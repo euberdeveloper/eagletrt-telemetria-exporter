@@ -2,14 +2,21 @@
   "name": "telemetria-exporter",
   "version": "1.0.0",
   "description": "A local webapp made with VueJs and NodeJs to easily export the telemetry data of @eagleTRT",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main",
     "commit": "git-cz"
   },
   "author": "Eugenio Vinicio Berretta <euberdeveloper@gmail.com>",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoback": "0.0.2",
+    "mongodb": "^3.4.1",
+    "morgan": "^1.9.1"
+  },
   "devDependencies": {
     "commitizen": "^4.0.3"
   }

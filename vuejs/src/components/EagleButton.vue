@@ -1,6 +1,6 @@
 <template>
   <div class="eagle-spinner">
-    <b-button variant="outline-primary" :disabled="disabled">{{text}}</b-button>
+    <b-button variant="outline-primary" :disabled="disabled" @click="eagleClick()">{{text}}</b-button>
   </div>
 </template>
 
@@ -16,6 +16,11 @@ export default {
             type: Boolean,
             default: false
         }
+    },
+    methods: {
+      eagleClick() {
+        this.$emit('eagleClick');
+      }
     }
 };
 </script>

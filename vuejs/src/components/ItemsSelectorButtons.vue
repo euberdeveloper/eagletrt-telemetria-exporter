@@ -1,8 +1,8 @@
 <template>
   <div class="items-selector-buttons row justify-content-center no-gutters">
     <div class="col text-center">
-      <eagle-button text="JSON" class="export-button" :disabled="disabled"/>
-      <eagle-button text="CSV" class="export-button" :disabled="disabled"/>
+      <eagle-button text="JSON" class="export-button" :disabled="disabled" @eagleClick="exportJson()"/>
+      <eagle-button text="CSV" class="export-button" :disabled="disabled" @eagleClick="exportCsv()"/>
     </div>
   </div>
 </template>
@@ -20,6 +20,14 @@ export default {
             type: Boolean,
             default: false
         }
+    },
+    methods: {
+      exportJson() {
+        this.$store.dispatch('exportJson');
+      },
+      exportCsv() {
+        this.$store.dispatch('exportCsv');
+      }
     }
 };
 </script>
