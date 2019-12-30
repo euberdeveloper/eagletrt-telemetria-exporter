@@ -5,5 +5,5 @@ export function downloadFile (data) {
     link.setAttribute('download', 'zip.zip');
     document.body.appendChild(link);
     link.click();
-    document.removeChild(link);
+    document.body.removeChild(link);
 }

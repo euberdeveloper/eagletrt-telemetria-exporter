@@ -10,6 +10,11 @@ export async function getDatabaseSchema () {
 export async function exportJson (selectedItems) {
     const body = { collectionsToExport: selectedItems };
     const response = await axios.post(`http://${HOST}/api/export/json`, body, { responseType: 'blob' });
-    console.log(response.data);
+    return response.data;
+}
+
+export async function exportCsv (selectedItems) {
+    const body = { collectionsToExport: selectedItems };
+    const response = await axios.post(`http://${HOST}/api/export/csv`, body, { responseType: 'blob' });
     return response.data;
 }

@@ -10,8 +10,7 @@ const Status = {
     NONE: -1,
     FETCHING: 0,
     EDITING: 1,
-    EXPORTING: 2,
-    DOWNLOADING: 3
+    EXPORTING: 2
 };
 
 const store = new Vuex.Store({
@@ -73,22 +72,18 @@ const store = new Vuex.Store({
     actions: {
         setStatus: function ({ commit }, status) {
             switch (status) {
-            case Status.FETCHING:
-                commit('setLoading', true);
-                commit('setLoadingMessage', 'Fetching database schema');
-                break;
-            case Status.EXPORTING:
-                commit('setLoading', true);
-                commit('setLoadingMessage', 'Exporting selected collections');
-                break;
-            case Status.DOWNLOADING:
-                commit('setLoading', true);
-                commit('setLoadingMessage', 'Downloading exported collections');
-                break;
-            default:
-                commit('setLoading', false);
-                commit('setLoadingMessage', '');
-                break;
+                case Status.FETCHING:
+                    commit('setLoading', true);
+                    commit('setLoadingMessage', 'Fetching database schema');
+                    break;
+                case Status.EXPORTING:
+                    commit('setLoading', true);
+                    commit('setLoadingMessage', 'Exporting selected collections');
+                    break;
+                default:
+                    commit('setLoading', false);
+                    commit('setLoadingMessage', '');
+                    break;
             }
             commit('setStatus', status);
         },
@@ -131,21 +126,15 @@ const store = new Vuex.Store({
             if (state.status === Status.EDITING) {
                 dispatch('setStatus', Status.EXPORTING);
                 const data = await api.exportJson(state.selectedItems);
-                dispatch('setStatus', Status.DOWNLOADING);
                 downloadFile(data);
-                dispatch('downloadDone');
+                dispatch('setStatus', Status.EDITING);
             }
         },
         exportCsv: async function ({ state, dispatch }) {
             if (state.status === Status.EDITING) {
                 dispatch('setStatus', Status.EXPORTING);
-                // doing shit
-                // commit('setReceivedZip', null);
-                dispatch('setStatus', Status.DOWNLOADING);
-            }
-        },
-        downloadDone: async function ({ state, dispatch }) {
-            if (state.status === Status.DOWNLOADING) {
+                const data = await api.exportCsv(state.selectedItems);
+                downloadFile(data);
                 dispatch('setStatus', Status.EDITING);
             }
         }
