@@ -12,10 +12,12 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dree": "^2.4.6",
     "express": "^4.17.1",
     "mongoback": "0.0.2",
     "mongodb": "^3.4.1",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "rimraf": "^3.0.0"
   },
   "devDependencies": {
     "commitizen": "^4.0.3"

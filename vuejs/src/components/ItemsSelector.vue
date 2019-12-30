@@ -28,10 +28,10 @@ export default {
         ItemsSelectorTitle
     },
     computed: {
-        databaseSchema: function() {
+        databaseSchema: function () {
             return this.$store.state.databaseSchema;
         },
-        currentDatabase: function() {
+        currentDatabase: function () {
             return this.$store.state.currentDatabase;
         },
         databases: function () {

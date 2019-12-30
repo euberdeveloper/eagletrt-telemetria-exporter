@@ -3,9 +3,9 @@
     <div v-for="db of databases" :key="db" class="db-container">
       <item type="DB" :text="db" selected />
       <div v-for="collection of selectedItems[db]" :key="collection">
-          <item 
-            type="COLLECTION" 
-            :text="collection" 
+          <item
+            type="COLLECTION"
+            :text="collection"
             @itemClicked="removeCollection(db, collection)" />
       </div>
     </div>
@@ -32,7 +32,7 @@ export default {
         }
     },
     methods: {
-        removeCollection(db, collection) {
+        removeCollection (db, collection) {
             this.$store.dispatch('removeCollection', { db, collection });
         }
     }

@@ -5,7 +5,7 @@
         :key="label"
         type="COLLECTION"
         :text="label"
-        :selected="selected" 
+        :selected="selected"
         @itemClicked="toggleCollection(label, selected)" />
   </div>
 </template>
@@ -25,12 +25,12 @@ export default {
         }
     },
     computed: {
-        database: function() {
+        database: function () {
             return this.$store.getters.currentDatabaseName;
         }
     },
     methods: {
-        toggleCollection(label, selected) {
+        toggleCollection (label, selected) {
             const collection = { db: this.database, collection: label };
             if (selected) {
                 this.$store.dispatch('removeCollection', collection);

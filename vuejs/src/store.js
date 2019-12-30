@@ -73,22 +73,22 @@ const store = new Vuex.Store({
     actions: {
         setStatus: function ({ commit }, status) {
             switch (status) {
-                case Status.FETCHING:
-                    commit('setLoading', true);
-                    commit('setLoadingMessage', 'Fetching database schema');
-                    break;
-                case Status.EXPORTING:
-                    commit('setLoading', true);
-                    commit('setLoadingMessage', 'Exporting selected collections');
-                    break;
-                case Status.DOWNLOADING:
-                    commit('setLoading', true);
-                    commit('setLoadingMessage', 'Downloading exported collections');
-                    break;
-                default:
-                    commit('setLoading', false);
-                    commit('setLoadingMessage', '');
-                    break;
+            case Status.FETCHING:
+                commit('setLoading', true);
+                commit('setLoadingMessage', 'Fetching database schema');
+                break;
+            case Status.EXPORTING:
+                commit('setLoading', true);
+                commit('setLoadingMessage', 'Exporting selected collections');
+                break;
+            case Status.DOWNLOADING:
+                commit('setLoading', true);
+                commit('setLoadingMessage', 'Downloading exported collections');
+                break;
+            default:
+                commit('setLoading', false);
+                commit('setLoadingMessage', '');
+                break;
             }
             commit('setStatus', status);
         },

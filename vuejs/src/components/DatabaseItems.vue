@@ -5,7 +5,7 @@
         :key="db"
         type="DB"
         :text="db"
-        :selected="index === selected" 
+        :selected="index === selected"
         @itemClicked="selectDatabase(index)" />
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
         }
     },
     methods: {
-        selectDatabase(index) {
+        selectDatabase (index) {
             this.$store.dispatch('selectDatabase', index);
         }
     }

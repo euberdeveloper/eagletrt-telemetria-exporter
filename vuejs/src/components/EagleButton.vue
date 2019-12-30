@@ -18,9 +18,9 @@ export default {
         }
     },
     methods: {
-      eagleClick() {
-        this.$emit('eagleClick');
-      }
+        eagleClick () {
+            this.$emit('eagleClick');
+        }
     }
 };
 </script>

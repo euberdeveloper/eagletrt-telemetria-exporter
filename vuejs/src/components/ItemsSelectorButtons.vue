@@ -22,12 +22,12 @@ export default {
         }
     },
     methods: {
-      exportJson() {
-        this.$store.dispatch('exportJson');
-      },
-      exportCsv() {
-        this.$store.dispatch('exportCsv');
-      }
+        exportJson () {
+            this.$store.dispatch('exportJson');
+        },
+        exportCsv () {
+            this.$store.dispatch('exportCsv');
+        }
     }
 };
 </script>

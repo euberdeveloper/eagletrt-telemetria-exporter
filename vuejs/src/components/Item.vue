@@ -6,38 +6,38 @@
 
 <script>
 export default {
-  name: "Item",
-  props: {
-    text: {
-      type: String,
-      required: true
+    name: 'Item',
+    props: {
+        text: {
+            type: String,
+            required: true
+        },
+        type: {
+            validator: function (value) {
+                return ['DB', 'COLLECTION'].includes(value);
+            },
+            required: true
+        },
+        selected: {
+            type: Boolean,
+            default: false
+        }
     },
-    type: {
-      validator: function(value) {
-        return ["DB", "COLLECTION"].includes(value);
-      },
-      required: true
+    computed: {
+        itemClass: function () {
+            return {
+                item: true,
+                selected: this.selected,
+                database: this.type === 'DB',
+                collection: this.type === 'COLLECTION'
+            };
+        }
     },
-    selected: {
-      type: Boolean,
-      default: false
+    methods: {
+        itemClicked () {
+            this.$emit('itemClicked');
+        }
     }
-  },
-  computed: {
-    itemClass: function() {
-      return {
-        item: true,
-        selected: this.selected,
-        database: this.type === "DB",
-        collection: this.type === "COLLECTION"
-      };
-    }
-  },
-  methods: {
-    itemClicked() {
-      this.$emit("itemClicked");
-    }
-  }
 };
 </script>
 
