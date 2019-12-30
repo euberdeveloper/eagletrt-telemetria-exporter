@@ -1,17 +1,16 @@
+const { MongoScanner } = require('mongo-scanner');
+
 const { MONGO } = require('../../config');
-const Database = require('../../utils/database');
-const database = new Database(MONGO.uri, MONGO.options);
+const mongoScanner = new MongoScanner(MONGO.uri, MONGO.options, { 
+    excludeSystem: true,
+    excludeEmptyDatabases: true,
+    excludeDatabases: ['local']
+});
 
 module.exports = function (router) {
 
     router.get('/database-schema', async (_req, res) => {
-        await database.connect();
-        const databases = await database.listDatabases();
-        const dbSchema = {};
-        for (const db of databases) {
-            const collections = await database.listCollections(db);
-            dbSchema[db] = collections;
-        }
+        const dbSchema = await mongoScanner.getSchema();
         res.status(200).send(dbSchema);
     });
 
