@@ -4,6 +4,7 @@
       <item type="DB" :text="db" selected />
       <div v-for="collection of selectedItems[db]" :key="collection">
           <item
+            erased
             type="COLLECTION"
             :text="collection"
             @itemClicked="removeCollection(db, collection)" />

@@ -21,6 +21,10 @@ export default {
         selected: {
             type: Boolean,
             default: false
+        },
+        erased: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -28,6 +32,7 @@ export default {
             return {
                 item: true,
                 selected: this.selected,
+                erased: this.erased,
                 database: this.type === 'DB',
                 collection: this.type === 'COLLECTION'
             };
@@ -65,5 +70,8 @@ export default {
 }
 .selected span:hover {
   color: #ffec00;
+}
+.erased span:hover {
+  color: #ee9999;
 }
 </style>
