@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import CollectionItems from './CollectionItems.vue';
-import DatabaseItems from './DatabaseItems.vue';
-import SelectedItems from './SelectedItems.vue';
+import CollectionItems from './gears/CollectionItems.vue';
+import DatabaseItems from './gears/DatabaseItems.vue';
+import SelectedItems from './gears/SelectedItems.vue';
 
 export default {
     name: 'ItemsSelectorContent',

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Item from './Item.vue';
+import Item from '../../../shared/item/Item.vue';
 
 export default {
     name: 'DatabaseItems',

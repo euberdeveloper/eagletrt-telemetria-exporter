@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ItemsSelector from './components/ItemsSelector.vue';
+import ItemsSelector from './components/items-selector/ItemsSelector.vue';
 
 export default {
     name: 'app',

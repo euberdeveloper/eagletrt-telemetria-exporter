@@ -1,4 +1,4 @@
-function getFileName() {
+function getFileName () {
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth() + 1;
@@ -10,7 +10,7 @@ function getFileName() {
     return `${year}-${month}-${day}_${hours}_${minutes}_${seconds}.zip`;
 }
 
-export function downloadFile(data) {
+export function downloadFile (data) {
     const url = window.URL.createObjectURL(new Blob([data]));
     const link = document.createElement('a');
     link.href = url;

@@ -6,11 +6,12 @@ import * as api from './services/api';
 
 Vue.use(Vuex);
 
-const Status = {
+export const Status = {
     NONE: -1,
     FETCHING: 0,
     EDITING: 1,
-    EXPORTING: 2
+    EXPORTING: 2,
+    FETCHING_ERROR: 3
 };
 
 const store = new Vuex.Store({
@@ -18,8 +19,8 @@ const store = new Vuex.Store({
         databaseSchema: {},
         currentDatabase: -1,
         selectedItems: {},
-        loading: false,
-        loadingMessage: '',
+        message: '',
+        error: true,
         status: Status.NONE
     },
     getters: {
@@ -62,8 +63,8 @@ const store = new Vuex.Store({
         setLoading: function (state, value) {
             state.loading = value;
         },
-        setLoadingMessage: function (state, value) {
-            state.loadingMessage = value;
+        setMessage: function (state, value) {
+            state.message = value;
         },
         setStatus: function (state, value) {
             state.status = value;
@@ -72,27 +73,32 @@ const store = new Vuex.Store({
     actions: {
         setStatus: function ({ commit }, status) {
             switch (status) {
-                case Status.FETCHING:
-                    commit('setLoading', true);
-                    commit('setLoadingMessage', 'Fetching database schema');
-                    break;
-                case Status.EXPORTING:
-                    commit('setLoading', true);
-                    commit('setLoadingMessage', 'Exporting selected collections');
-                    break;
-                default:
-                    commit('setLoading', false);
-                    commit('setLoadingMessage', '');
-                    break;
+            case Status.FETCHING:
+                commit('setMessage', 'Fetching database schema');
+                break;
+            case Status.EXPORTING:
+                commit('setMessage', 'Exporting selected collections');
+                break;
+            case Status.FETCHING_ERROR:
+                commit('setMessage', 'Error in fetching database');
+                break;
+            default:
+                commit('setMessage', '');
+                break;
             }
             commit('setStatus', status);
         },
         fetchDatabaseSchema: async function ({ commit, state, dispatch }) {
-            if (state.status === Status.NONE) {
+            if (state.status === Status.NONE || state.status === Status.FETCHING_ERROR) {
                 dispatch('setStatus', Status.FETCHING);
-                const databaseSchema = await api.getDatabaseSchema();
-                commit('setDatabaseSchema', databaseSchema);
-                dispatch('setStatus', Status.EDITING);
+                try {
+                    const databaseSchema = await api.getDatabaseSchema();
+                    commit('setDatabaseSchema', databaseSchema);
+                    dispatch('setStatus', Status.EDITING);
+                } catch (error) {
+                    console.error('Error in fetching database', error);
+                    dispatch('setStatus', Status.FETCHING_ERROR);
+                }
             }
         },
         selectDatabase: function ({ commit, state }, currentDatabase) {

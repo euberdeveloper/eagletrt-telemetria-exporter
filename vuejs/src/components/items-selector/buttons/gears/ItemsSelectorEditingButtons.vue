@@ -1,17 +1,15 @@
 <template>
-  <div class="items-selector-buttons row justify-content-center no-gutters">
-    <div class="col text-center">
-      <eagle-button text="JSON" class="export-button" :disabled="disabled" @eagleClick="exportJson()"/>
-      <eagle-button text="CSV" class="export-button" :disabled="disabled" @eagleClick="exportCsv()"/>
-    </div>
+  <div class="items-selector-editing-buttons col text-center">
+    <eagle-button text="JSON" class="export-button" :disabled="disabled" @eagleClick="exportJson()"/>
+    <eagle-button text="CSV" class="export-button" :disabled="disabled" @eagleClick="exportCsv()"/>
   </div>
 </template>
 
 <script>
-import EagleButton from './EagleButton.vue';
+import EagleButton from '../../../shared/eagle/EagleButton.vue';
 
 export default {
-    name: 'ItemsSelectorButtons',
+    name: 'ItemsSelectorEditingButtons',
     components: {
         EagleButton
     },

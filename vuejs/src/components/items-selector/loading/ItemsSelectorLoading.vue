@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import EagleSpinner from './EagleSpinner.vue';
-import LoadingLabel from './LoadingLabel.vue';
+import EagleSpinner from '../../shared/eagle/EagleSpinner.vue';
+import LoadingLabel from './gears/LoadingLabel.vue';
 
 export default {
     name: 'ItemsSelectorLoading',
