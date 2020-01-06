@@ -1,6 +1,6 @@
 <template>
-  <div class="items-selector-refresh-buttons col text-center">
-    <eagle-button text="RETRY" :disabled="disabled" @eagleClick="refresh()"/>
+  <div class="items-selector-exporting-error-buttons col text-center">
+    <eagle-button text="UNDERSTOOD" :disabled="disabled" @eagleClick="understood()"/>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import EagleButton from '../../../shared/eagle/EagleButton.vue';
 
 export default {
-    name: 'ItemsSelectorRefreshButtons',
+    name: 'ItemsSelectorExportingErrorButtons',
     components: {
         EagleButton
     },
@@ -18,9 +18,9 @@ export default {
         };
     },
     methods: {
-        refresh () {
+        understood () {
             this.disabled = true;
-            this.$store.dispatch('fetchDatabaseSchema');
+            this.$store.dispatch('backToEditing');
         }
     }
 };

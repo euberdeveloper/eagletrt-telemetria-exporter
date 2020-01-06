@@ -17,14 +17,21 @@ module.exports = function (router) {
         } = pather();
 
         const collectionsToExport = req.body.collectionsToExport;
-        await mongoback.mongoExport({
-            collections: [collectionsToExport],
-            jsonArray: true,
-            outDir: folderPath
-        });
+        try {
+            await mongoback.mongoExport({
+                collections: [collectionsToExport],
+                jsonArray: true,
+                throwIfOneFails: true,
+                outDir: folderPath
+            });
 
-        await exec(`zip -r ${timestamp}.zip ${timestamp}/*`, { cwd: tempPath });
-        res.sendFile(zipPath, async () => await remover(timestamp));
+            await exec(`zip -r ${timestamp}.zip ${timestamp}/*`, { cwd: tempPath });
+            res.sendFile(zipPath, async () => await remover(timestamp));
+        }
+        catch (error) {
+            console.error('Error in exporting json', error);
+            res.status(500).send(error);
+        }
     });
 
 };

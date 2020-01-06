@@ -11,7 +11,8 @@ export const Status = {
     FETCHING: 0,
     EDITING: 1,
     EXPORTING: 2,
-    FETCHING_ERROR: 3
+    FETCHING_ERROR: 3,
+    EXPORTING_ERROR: 4
 };
 
 const store = new Vuex.Store({
@@ -20,7 +21,6 @@ const store = new Vuex.Store({
         currentDatabase: -1,
         selectedItems: {},
         message: '',
-        error: true,
         status: Status.NONE
     },
     getters: {
@@ -82,6 +82,9 @@ const store = new Vuex.Store({
             case Status.FETCHING_ERROR:
                 commit('setMessage', 'Error in fetching database');
                 break;
+            case Status.EXPORTING_ERROR:
+                commit('setMessage', 'Error in exporting collections');
+                break;
             default:
                 commit('setMessage', '');
                 break;
@@ -89,7 +92,7 @@ const store = new Vuex.Store({
             commit('setStatus', status);
         },
         fetchDatabaseSchema: async function ({ commit, state, dispatch }) {
-            if (state.status === Status.NONE || state.status === Status.FETCHING_ERROR) {
+            if (state.status === Status.NONE || state.status === Status.FETCHING_ERROR || state.status === Status.EXPORTING) {
                 dispatch('setStatus', Status.FETCHING);
                 try {
                     const databaseSchema = await api.getDatabaseSchema();
@@ -131,16 +134,31 @@ const store = new Vuex.Store({
         exportJson: async function ({ state, dispatch }) {
             if (state.status === Status.EDITING) {
                 dispatch('setStatus', Status.EXPORTING);
-                const data = await api.exportJson(state.selectedItems);
-                downloadFile(data);
-                dispatch('setStatus', Status.EDITING);
+                try {
+                    const data = await api.exportJson(state.selectedItems);
+                    downloadFile(data);
+                    dispatch('fetchDatabaseSchema');
+                } catch (error) {
+                    console.error('Error in exporting collections as json', error);
+                    dispatch('setStatus', Status.EXPORTING_ERROR);
+                }
             }
         },
         exportCsv: async function ({ state, dispatch }) {
             if (state.status === Status.EDITING) {
                 dispatch('setStatus', Status.EXPORTING);
-                const data = await api.exportCsv(state.selectedItems);
-                downloadFile(data);
+                try {
+                    const data = await api.exportCsv(state.selectedItems);
+                    downloadFile(data);
+                    dispatch('fetchDatabaseSchema');
+                } catch (error) {
+                    console.error('Error in exporting collections as csv', error);
+                    dispatch('setStatus', Status.EXPORTING_ERROR);
+                }
+            }
+        },
+        backToEditing: async function ({ state, dispatch, commit }) {
+            if (state.status === Status.EXPORTING || state.status === Status.EXPORTING_ERROR) {
                 dispatch('setStatus', Status.EDITING);
             }
         }

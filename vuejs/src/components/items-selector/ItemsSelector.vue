@@ -61,22 +61,24 @@ export default {
         },
         error: function () {
             const state = this.$store.state.status;
-            return state === Status.FETCHING_ERROR;
+            return state === Status.FETCHING_ERROR || state === Status.EXPORTING_ERROR;
         },
         message: function () {
             return this.$store.state.message;
         },
         buttonType: function () {
             switch (this.$store.state.status) {
-                case Status.NONE:
-                case Status.FETCHING:
-                case Status.EXPORTING:
-                case Status.EDITING:
-                    return 'EDITING';
-                case Status.FETCHING_ERROR:
-                    return 'REFRESH';
-                default:
-                    return 'EDITING';
+            case Status.NONE:
+            case Status.FETCHING:
+            case Status.EXPORTING:
+            case Status.EDITING:
+                return 'EDITING';
+            case Status.FETCHING_ERROR:
+                return 'REFRESH';
+            case Status.EXPORTING_ERROR:
+                return 'EXPORTING_ERROR';
+            default:
+                return 'EDITING';
             }
         }
     },
