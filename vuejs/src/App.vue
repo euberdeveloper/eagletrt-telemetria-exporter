@@ -22,6 +22,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 }
 
+::selection {
+  background: #8EBAF0;
+}
+
 body {
   background: #060606;
   color: #F4F4F4;
