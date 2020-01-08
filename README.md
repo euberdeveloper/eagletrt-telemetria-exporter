@@ -38,7 +38,7 @@ A local webapp made with **VueJs** and **NodeJs** to easily export the telemetry
 
 <br />
 <p align="center">
-  <img src="https://github.com/euberdeveloper/eagletrt-telemetria-exporter/raw/master/docs/assets/server_start_log.png">
+  <img src="https://github.com/euberdeveloper/eagletrt-telemetria-exporter/raw/master/docs/assets/server_start_log.gif">
 </p>
 <br />
 
@@ -46,7 +46,7 @@ A local webapp made with **VueJs** and **NodeJs** to easily export the telemetry
 
 <br />
 <p align="center">
-  <img src="https://github.com/euberdeveloper/eagletrt-telemetria-exporter/raw/master/docs/assets/server_export_log.png">
+  <img src="https://github.com/euberdeveloper/eagletrt-telemetria-exporter/raw/master/docs/assets/server_export_log.gif">
 </p>
 <br />
 
