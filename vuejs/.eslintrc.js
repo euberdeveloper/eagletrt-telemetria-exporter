@@ -15,7 +15,7 @@ module.exports = {
         'no-return-assign': ['off'],
         'space-before-function-paren': ['warn'],
         'no-trailing-spaces': ['warn'],
-        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'no-console': ['off'],
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
     },
     parserOptions: {

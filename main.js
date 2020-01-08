@@ -1,6 +1,8 @@
 const express = require('express');
-const morgan = require('morgan');
+const compression = require('compression');
+const helmet = require('helmet');
 const cors = require('cors');
+const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
 const { PORT } = require('./config');
@@ -13,6 +15,12 @@ const logger = require('./utils/logger')('MAIN');
 
 logger.info('Adding middlewares...');
 
+logger.debug('compression');
+app.use(compression());
+
+logger.debug('helmet');
+app.use(helmet());
+
 logger.debug('cors');
 app.use(cors());
 
@@ -22,6 +30,9 @@ app.use(morgan('dev'));
 logger.debug('bodyParser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+logger.debug('express-static');
+app.use(express.static('frontend'));
 
 logger.success('Added middlewares!!!');
 
