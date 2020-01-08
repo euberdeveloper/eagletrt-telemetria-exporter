@@ -1,7 +1,7 @@
-const mongoback = require('mongoback');
+const eagletrtCsv = require('eagletrt-csv');
 const childProcess = require('child_process');
 const util = require('util');
-const logger = require('../../utils/logger')('EXPORT_JSON');
+const logger = require('../../utils/logger')('EXPORT_CSV');
 const remover = require('../../utils/remover');
 const pather = require('../../utils/pather');
 
@@ -9,8 +9,8 @@ const exec = util.promisify(childProcess.exec);
 
 module.exports = function (router) {
 
-    router.post('/export/json', async (req, res) => {
-        logger.info('api/export/json');
+    router.post('/export/csv', async (req, res) => {
+        logger.info('api/export/csv');
 
         const {
             timestamp,
@@ -23,9 +23,8 @@ module.exports = function (router) {
         const collectionsToExport = req.body.collectionsToExport;
         logger.debug('collections are ', collectionsToExport);
         try {
-            await mongoback.mongoExport({
+            await eagletrtCsv.mongoExport({
                 collections: collectionsToExport,
-                jsonArray: true,
                 throwIfOneFails: true,
                 outDir: folderPath
             });
@@ -35,7 +34,7 @@ module.exports = function (router) {
         }
         catch (error) {
             logger.warn('Timestamp was ', timestamp);
-            logger.error('Error in exporting json', error);
+            logger.error('Error in exporting csv', error);
             res.status(500).send(error);
         }
     });
