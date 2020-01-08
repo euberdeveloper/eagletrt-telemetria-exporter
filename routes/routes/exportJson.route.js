@@ -1,11 +1,8 @@
 const mongoback = require('mongoback');
-const childProcess = require('child_process');
-const util = require('util');
+const zl = require('zip-lib');
 const logger = require('../../utils/logger')('EXPORT_JSON');
 const remover = require('../../utils/remover');
 const pather = require('../../utils/pather');
-
-const exec = util.promisify(childProcess.exec);
 
 module.exports = function (router) {
 
@@ -14,7 +11,6 @@ module.exports = function (router) {
 
         const {
             timestamp,
-            tempPath,
             folderPath,
             zipPath
         } = pather();
@@ -30,11 +26,14 @@ module.exports = function (router) {
                 outDir: folderPath
             });
 
-            await exec(`zip -r ${timestamp}.zip ${timestamp}/*`, { cwd: tempPath });
+            const zip = new zl.Zip();
+            zip.addFolder(folderPath);
+            await zip.archive(zipPath);
+            
             res.sendFile(zipPath, async () => await remover(timestamp));
         }
         catch (error) {
-            logger.warn('Timestamp was ', timestamp);
+            logger.warning('Timestamp was ', timestamp);
             logger.error('Error in exporting json', error);
             res.status(500).send(error);
         }
