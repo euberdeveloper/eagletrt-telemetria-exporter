@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import { order } from './services/order';
 import { downloadFile } from './services/download';
 import * as api from './services/api';
 
@@ -96,6 +97,7 @@ const store = new Vuex.Store({
                 dispatch('setStatus', Status.FETCHING);
                 try {
                     const databaseSchema = await api.getDatabaseSchema();
+                    order(databaseSchema);
                     commit('setDatabaseSchema', databaseSchema);
                     dispatch('setStatus', Status.EDITING);
                 } catch (error) {
