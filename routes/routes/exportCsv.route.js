@@ -21,6 +21,7 @@ module.exports = function (router) {
         try {
             await eagletrtCsv.mongoExport({
                 collections: collectionsToExport,
+                throwIfLackOfPermissions: true,
                 throwIfOneFails: true,
                 outDir: folderPath
             });

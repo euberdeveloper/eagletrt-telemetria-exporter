@@ -22,6 +22,7 @@ module.exports = function (router) {
             await mongoback.mongoExport({
                 collections: collectionsToExport,
                 jsonArray: true,
+                throwIfLackOfPermissions: true,
                 throwIfOneFails: true,
                 outDir: folderPath
             });
