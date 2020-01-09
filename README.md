@@ -78,10 +78,11 @@ To put the exporter in the raspberry:
 5. Execute `npm i`.
 6. Execute `npm run start`.
 
-To change the server port:
+To change the server port or the mongodb uri:
 
 1. Open the file `config.json`.
 2. Set the property `PORT` as needed.
+3. Set the property of the object`MONGO` as needed.
 
 To change something in the frontend:
 
