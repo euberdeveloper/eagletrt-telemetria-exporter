@@ -38,7 +38,7 @@ A local webapp made with **VueJs** and **NodeJs** to easily export the telemetry
 
 <br />
 <p align="center">
-  <img src="https://github.com/euberdeveloper/eagletrt-telemetria-exporter/raw/master/docs/assets/server_start_log.png">
+  <img src="https://github.com/euberdeveloper/eagletrt-telemetria-exporter/raw/master/docs/assets/server_start_log.gif">
 </p>
 <br />
 
@@ -46,7 +46,7 @@ A local webapp made with **VueJs** and **NodeJs** to easily export the telemetry
 
 <br />
 <p align="center">
-  <img src="https://github.com/euberdeveloper/eagletrt-telemetria-exporter/raw/master/docs/assets/server_export_log.png">
+  <img src="https://github.com/euberdeveloper/eagletrt-telemetria-exporter/raw/master/docs/assets/server_export_log.gif">
 </p>
 <br />
 
@@ -78,10 +78,11 @@ To put the exporter in the raspberry:
 5. Execute `npm i`.
 6. Execute `npm run start`.
 
-To change the server port:
+To change the server port or the mongodb uri:
 
 1. Open the file `config.json`.
 2. Set the property `PORT` as needed.
+3. Set the property of the object`MONGO` as needed.
 
 To change something in the frontend:
 
