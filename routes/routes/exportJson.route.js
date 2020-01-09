@@ -3,6 +3,7 @@ const zl = require('zip-lib');
 const logger = require('../../utils/logger')('EXPORT_JSON');
 const remover = require('../../utils/remover');
 const pather = require('../../utils/pather');
+const { MONGO } = require('../../config');
 
 module.exports = function (router) {
 
@@ -20,6 +21,7 @@ module.exports = function (router) {
         logger.debug('collections are ', collectionsToExport);
         try {
             await mongoback.mongoExport({
+                uri: MONGO.uri,
                 collections: collectionsToExport,
                 jsonArray: true,
                 throwIfLackOfPermissions: true,
