@@ -5,7 +5,8 @@ const { MONGO } = require('../../config');
 const mongoScanner = new MongoScanner(MONGO.uri, null, { 
     excludeSystem: true,
     excludeEmptyDatabases: true,
-    excludeDatabases: ['local']
+    excludeDatabases: ['local'],
+    ignoreLackOfPermissions: true
 });
 
 module.exports = function (router) {
