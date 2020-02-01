@@ -1,5 +1,5 @@
 module.exports = {
-    PORT: 8000,
+    PORT: process.env.PORT || 8000,
     MONGO: {
         uri: process.env.MONGO_URI || 'mongodb://localhost:27017',
         options: {}
