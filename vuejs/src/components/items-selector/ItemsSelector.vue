@@ -10,7 +10,7 @@
       :collections="currentCollections"
       :selectedItems="selectedItems"
     />
-    <items-selector-buttons :type="buttonType" :disabled="!editing" />
+    <items-selector-buttons :type="buttonType" :disabled="!editing || noneSelected" />
   </div>
 </template>
 
@@ -47,6 +47,9 @@ export default {
         },
         selectedItems: function () {
             return this.$store.state.selectedItems;
+        },
+        noneSelected: function () {
+            return Object.keys(this.selectedItems).length === 0;
         },
         status: function () {
             return this.$store.state.status;

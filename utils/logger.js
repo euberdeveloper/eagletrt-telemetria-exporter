@@ -1,13 +1,5 @@
 const chalk = require('chalk');
-
-const PALETTE = {
-    info: '#81A2BE',
-    success: '#B5BD68',
-    debug: '#C5C8C6',
-    warning: '#F0C674',
-    error: '#CC6666'
-
-};
+const palette = require('../config').LOGGER.palette;
 
 class Logger {
 
@@ -18,7 +10,7 @@ class Logger {
     info(message, object) {
         const tag = chalk.bold.blue('[INFO]');
         const scope = chalk.blue(`{${this.scope}}`);
-        const text = chalk.hex(PALETTE.info)(`${tag} ${scope} ${message}`);
+        const text = chalk.hex(palette.info)(`${tag} ${scope} ${message}`);
         if (object) {
             console.log(text, object)
         }
@@ -30,7 +22,7 @@ class Logger {
     success(message, object) {
         const tag = chalk.bold.green('[SUCCESS]');
         const scope = chalk.green(`{${this.scope}}`);
-        const text = chalk.hex(PALETTE.success)(`${tag} ${scope} ${message}`);
+        const text = chalk.hex(palette.success)(`${tag} ${scope} ${message}`);
         if (object) {
             console.log(text, object)
         }
@@ -42,7 +34,7 @@ class Logger {
     debug(message, object) {
         const tag = chalk.bold.grey('[DEBUG]');
         const scope = chalk.grey(`{${this.scope}}`);
-        const text = chalk.hex(PALETTE.debug)(`${tag} ${scope} ${message}`);
+        const text = chalk.hex(palette.debug)(`${tag} ${scope} ${message}`);
         if (object) {
             console.debug(text, object)
         }
@@ -54,7 +46,7 @@ class Logger {
     warning(message, object) {
         const tag = chalk.bold.yellow('[WARNING]');
         const scope = chalk.yellow(`{${this.scope}}`);
-        const text = chalk.hex(PALETTE.warning)(`${tag} ${scope} ${message}`);
+        const text = chalk.hex(palette.warning)(`${tag} ${scope} ${message}`);
         if (object) {
             console.warn(text, object)
         }
@@ -66,7 +58,7 @@ class Logger {
     error(message, error) {
         const tag = chalk.bold.red('[ERROR]');
         const scope = chalk.red(`{${this.scope}}`);
-        const text = chalk.hex(PALETTE.error)(`${tag} ${scope} ${message}`);
+        const text = chalk.hex(palette.error)(`${tag} ${scope} ${message}`);
         if (error) {
             console.error(text, error)
         }

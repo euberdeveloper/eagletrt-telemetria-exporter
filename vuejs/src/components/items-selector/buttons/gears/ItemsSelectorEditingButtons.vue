@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import EagleButton from '../../../shared/eagle/EagleButton.vue';
+import EagleButton from '@/components/shared/eagle/EagleButton.vue';
 
 export default {
     name: 'ItemsSelectorEditingButtons',
