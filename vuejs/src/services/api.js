@@ -1,5 +1,5 @@
 import axios from 'axios';
-import options from '../config.json';
+import options from '@/config';
 
 function getHostname() {
     const url = new URL(window.location.href);
@@ -11,20 +11,21 @@ function getHostname() {
 }
 
 const HOSTNAME = getHostname();
+console.log(HOSTNAME)
 
 export async function getDatabaseSchema () {
-    const response = await axios.get(`http://${HOSTNAME}/api/database-schema`);
+    const response = await axios.get(`https://${HOSTNAME}/api/database-schema`);
     return response.data;
 }
 
 export async function exportJson (selectedItems) {
     const body = { collectionsToExport: selectedItems };
-    const response = await axios.post(`http://${HOSTNAME}/api/export/json`, body, { responseType: 'blob' });
+    const response = await axios.post(`https://${HOSTNAME}/api/export/json`, body, { responseType: 'blob' });
     return response.data;
 }
 
 export async function exportCsv (selectedItems) {
     const body = { collectionsToExport: selectedItems };
-    const response = await axios.post(`http://${HOSTNAME}/api/export/csv`, body, { responseType: 'blob' });
+    const response = await axios.post(`https://${HOSTNAME}/api/export/csv`, body, { responseType: 'blob' });
     return response.data;
 }
