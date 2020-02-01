@@ -10,6 +10,7 @@ const routes = require('./routes');
 const app = express();
 
 const logger = require('./utils/logger')('MAIN');
+const httpsRedirect = require('./utils/httpsRedirect');
 
 /* ADDING MIDDLEWARES */
 
@@ -17,6 +18,11 @@ logger.info('Adding middlewares...');
 
 logger.debug('compression');
 app.use(compression());
+
+if (process.env.NODE_ENV === 'production') {
+    logger.debug('httpsRedirect');
+    app.use(httpsRedirect);
+}
 
 logger.debug('helmet');
 app.use(helmet());
