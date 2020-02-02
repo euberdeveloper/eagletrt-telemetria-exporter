@@ -1,5 +1,5 @@
 export default {
-    host: process.env.HEROKU ? 'telemetria-exporter-demo.herokuapp.com' : 'localhost',
-    port: process.env.HEROKU ? '' : 8000,
-    protocol: process.env.HEROKU ? 'https' : 'http'
+    host: process.env.NODE_ENV === 'production' ? 'telemetria-exporter-demo.herokuapp.com' : 'localhost',
+    port: process.env.NODE_ENV === 'production' ? '' : 8000,
+    protocol: process.env.NODE_ENV === 'production' ? 'https' : 'http'
 };
