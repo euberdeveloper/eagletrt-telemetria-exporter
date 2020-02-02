@@ -52,7 +52,7 @@ A local webapp made with **VueJs** and **NodeJs** to easily export the telemetry
 
 ## Project purpose
 
-This project was made for **[@eagleTRT](https://github.com/eagletrt)**. The telemetry data are saved as a **MongoDB** in a **Raspberry** inside the car. The purpose of this project is giving a fast way to export the data as json or csv. The project is a **NodeJs** server running in the raspberry and serving a **VueJs** webapp.
+This project was made for **[@eagleTRT](https://github.com/eagletrt)**. The telemetry data are saved as a **MongoDB** in a **Raspberry** inside the car. The purpose of this project is giving a fast way to export the data as json or csv. The project is a **NodeJs** server running in the raspberry and serving a **VueJs** webapp. It should be used with desktop devices, in that mobile support was not needed.
 
 ## Demo
 
