@@ -5,7 +5,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-const { PORT } = require('./config');
+const { PORT, DIST_PATH } = require('./config');
 const routes = require('./routes');
 const app = express();
 
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 logger.debug('express-static');
-app.use(express.static('frontend'));
+app.use(express.static(DIST_PATH));
 
 logger.success('Added middlewares!!!');
 
