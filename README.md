@@ -54,6 +54,10 @@ A local webapp made with **VueJs** and **NodeJs** to easily export the telemetry
 
 This project was made for **[@eagleTRT](https://github.com/eagletrt)**. The telemetry data are saved as a **MongoDB** in a **Raspberry** inside the car. The purpose of this project is giving a fast way to export the data as json or csv. The project is a **NodeJs** server running in the raspberry and serving a **VueJs** webapp.
 
+## Demo
+
+Here is a **[demo](https://telemetria-exporter-demo.herokuapp.com)** with a mock database. Note that the json export will not work in that mongoexport is not installed in the demo server.
+
 ## User usage
 
 To see a demo, scroll up to the top of this README.
