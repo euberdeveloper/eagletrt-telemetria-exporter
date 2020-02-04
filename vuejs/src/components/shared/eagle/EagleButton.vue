@@ -6,22 +6,24 @@
 
 <script>
 export default {
-    name: 'EagleButton',
-    props: {
-        text: {
-            type: String,
-            required: true
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        }
+  name: "EagleButton",
+  props: {
+    text: {
+      type: String,
+      required: true
     },
-    methods: {
-        eagleClick () {
-            this.$emit('eagleClick');
-        }
+    disabled: {
+      type: Boolean,
+      default: false
     }
+  },
+  methods: {
+    eagleClick() {
+      if (!this.disabled) {
+        this.$emit("eagleClick");
+      }
+    }
+  }
 };
 </script>
 

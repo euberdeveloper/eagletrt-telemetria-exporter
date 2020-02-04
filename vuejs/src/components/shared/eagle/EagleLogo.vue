@@ -1,6 +1,10 @@
 <template>
   <div class="eagle-logo">
-    <img src="logo.png" :style="style" />
+      <picture :style="style">
+          <source srcset="logo.webp" type="image/webp">
+          <source srcset="logo.png" type="image/png">
+          <img src="logo.png" alt="eagle-logo" :style="style" />
+      </picture>
   </div>
 </template>
 
