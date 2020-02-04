@@ -1,5 +1,5 @@
 <template>
-  <div class="items-selector container">
+  <perfect-scrollbar class="items-selector container">
     <items-selector-title />
     <items-selector-loading v-if="loading" :message="message" />
     <items-selector-error v-if="error" :message="message" />
@@ -11,11 +11,13 @@
       :selectedItems="selectedItems"
     />
     <items-selector-buttons :type="buttonType" :disabled="!editing || noneSelected" />
-  </div>
+  </perfect-scrollbar>
 </template>
 
 <script>
 import { Status } from '../../store';
+
+import { PerfectScrollbar } from 'vue2-perfect-scrollbar';
 
 import ItemsSelectorTitle from './title/ItemsSelectorTitle.vue';
 import ItemsSelectorContent from './content/ItemsSelectorContent.vue';
@@ -26,6 +28,7 @@ import ItemsSelectorButtons from './buttons/ItemsSelectorButtons.vue';
 export default {
     name: 'ItemsSelector',
     components: {
+        PerfectScrollbar,
         ItemsSelectorButtons,
         ItemsSelectorContent,
         ItemsSelectorLoading,
@@ -64,7 +67,9 @@ export default {
         },
         error: function () {
             const state = this.$store.state.status;
-            return state === Status.FETCHING_ERROR || state === Status.EXPORTING_ERROR;
+            return (
+                state === Status.FETCHING_ERROR || state === Status.EXPORTING_ERROR
+            );
         },
         message: function () {
             return this.$store.state.message;
