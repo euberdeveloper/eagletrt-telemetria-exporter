@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-    PORT: process.env.PORT || 8000,
+    PORT: 80,
     MONGO: {
-        uri: process.env.MONGO_URI || 'mongodb://localhost:27017',
+        uri: 'mongodb://localhost:27017',
         options: {}
     },
     LOGGER: {
@@ -15,7 +15,5 @@ module.exports = {
             error: '#CC6666'
         }
     },
-    DIST_PATH: process.env.NODE_ENV === 'production' 
-        ? path.join(__dirname, 'demo') 
-        : path.join(__dirname, 'frontend')
+    DIST_PATH: path.join(__dirname, 'frontend')
 };
