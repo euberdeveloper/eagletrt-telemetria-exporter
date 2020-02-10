@@ -9,7 +9,7 @@ COPY ./main.js ./
 COPY ./utils/ ./utils/
 COPY ./temp/ ./temp/
 COPY ./routes/ ./routes/
-COPY ./frontend/ ./frontend/
+COPY ./demo/ ./demo/
 
 # Updating apt
 RUN apt-get update

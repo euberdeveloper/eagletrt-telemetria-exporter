@@ -1,5 +1,0 @@
-build:
-  docker:
-    web: webapp/Dockerfile
-run:
-  web: npm start
