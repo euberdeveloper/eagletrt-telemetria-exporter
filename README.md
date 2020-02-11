@@ -56,7 +56,7 @@ This project was made for **[@eagleTRT](https://github.com/eagletrt)**. The tele
 
 ## Demo
 
-Here is a **[demo](https://telemetria-exporter-demo.herokuapp.com)** with a mock database. Note that the json export will not work in that mongoexport is not installed in the demo server.
+Here is a **[demo](https://telemetria-exporter-demo.herokuapp.com)** with a mock database. The demo was deployed with **Heroku** and hosts the database on **MongoAtlas**. Needing the server mongoexport installed in the machine, I had to deploy it using also Docker. Every time something is pushed on GitHub, Heroku builds a new Docker image from the Dockerfile and deploys it.
 
 ## User usage
 
