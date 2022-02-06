@@ -1,8 +1,8 @@
+# 301 - This repo was moved to the [eagletrt organisation](https://github.com/eagletrt).
+
 # eagletrt-telemetria-exporter
 
 A local webapp made with **VueJs** and **NodeJs** to easily export the telemetry data of **[@eagleTRT](https://github.com/eagletrt)**.
-
-**Note:** This repo was moved to the **[eagletrt organisation](https://github.com/eagletrt/telemetria-exporter)**.
 
 ## Export database data as json
 
